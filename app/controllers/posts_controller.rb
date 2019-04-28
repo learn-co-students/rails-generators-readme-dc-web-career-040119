@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    byebug
     @post = Post.new(params)
     @post.save
     redirect_to post_path(@post)
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(params.require(:post))
+    @post.update(params.require(:post).permit(:title, :description, :post_status))
     redirect_to post_path(@post)
   end
 
